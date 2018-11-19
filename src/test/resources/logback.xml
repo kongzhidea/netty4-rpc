@@ -1,0 +1,41 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] %class:%line - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>/data/logs/kk/kk.log</File>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>
+                /data/logs/kk/kk.log_%d{yyyy-MM-dd}
+            </FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} [%level] %class:%line - %m%n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.kk"  additivity="false"  level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-INFO"/>
+    </logger>
+
+    <logger name="com.netty4.rpc"  additivity="false"  level="debug">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-INFO"/>
+    </logger>
+
+    <root level="WARN">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE-INFO"/>
+    </root>
+
+</configuration>
