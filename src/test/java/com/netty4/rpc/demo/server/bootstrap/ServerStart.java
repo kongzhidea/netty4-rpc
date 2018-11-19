@@ -31,6 +31,10 @@ public class ServerStart implements ApplicationContextAware {
     @Value("${server.threadNum}")
     private int threadNum;
 
+    // false 则不注册到zk上，true则注册到zk上。
+    @Value("${server.registryFlag}")
+    private boolean registryFlag;
+
     private static ApplicationContext ctx;
 
     @Override
@@ -45,6 +49,7 @@ public class ServerStart implements ApplicationContextAware {
         Args args = new Args();
         args.port = port;
         args.workerThreadNum = threadNum;
+        args.registryFlag = registryFlag;
 
         server.setArgs(args);
 

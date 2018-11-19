@@ -108,7 +108,9 @@ public class RpcServer {
             // 服务器绑定端口监听
             ChannelFuture f = b.bind(args.port).sync();
 
-            registryServer();
+            if(args.registryFlag) {
+                registryServer();
+            }
 
             // 监听服务器关闭监听
             f.channel().closeFuture().sync();
@@ -150,16 +152,18 @@ public class RpcServer {
             }
         }
 
-        // 优雅关机， 关机命令需要是   kill pid， 不能是 kill -9
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            @Override
-            public void run() {
-                try {
-                    unRegistryServer();
-                } catch (Exception e) {
-                    logger.error(e.getMessage(), e);
+        if(args.registryFlag) {
+            // 优雅关机， 关机命令需要是   kill pid， 不能是 kill -9
+            Runtime.getRuntime().addShutdownHook(new Thread() {
+                @Override
+                public void run() {
+                    try {
+                        unRegistryServer();
+                    } catch (Exception e) {
+                        logger.error(e.getMessage(), e);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 }
