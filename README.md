@@ -4,7 +4,7 @@
     * 4.1.*， 默认采用内存池
 * 采用hession序列化
     * 注意内存溢出问题，记得释放ByteBuf。  重要！！！
-    * HessianEncoder 目前客户端和服务端使用的类型为：Serializable，但是继承的MessageToByteEncoder是可以执行泛型类型的，如果不是此类型则不处理。 
+    * HessianEncoder 目前客户端和服务端使用的类型为：Serializable，但是继承的MessageToByteEncoder是可以指定泛型类型的，不是此类型则不处理。 
        * 推荐写法为：public class HessianEncoder extends MessageToByteEncoder<RemotingCommand>
        * 好处：客户端和服务端通信时候 不用传其他类型，还可以设置其他的编解码工具。
        * RemotingCommand 中封装 RpcRequest和RpcResponse
