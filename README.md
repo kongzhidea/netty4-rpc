@@ -5,9 +5,9 @@
 * 采用hession序列化
     * 注意内存溢出问题，记得释放ByteBuf。  重要！！！
     * HessianEncoder 目前客户端和服务端使用的类型为：Serializable，但是继承的MessageToByteEncoder是可以指定泛型类型的，不是此类型则不处理。 
-       * 推荐写法为：public class HessianEncoder extends MessageToByteEncoder<RemotingCommand>
+       * 推荐写法为：public class HessianEncoder extends MessageToByteEncoder&lt;RpcBaseModel&gt;
        * 好处：客户端和服务端通信时候 不用传其他类型，还可以设置其他的编解码工具。
-       * RemotingCommand 中封装 RpcRequest和RpcResponse
+       * RpcBaseModel 是 RpcRequest和RpcResponse 的基类。
        * 对应的handler需要处理，如：RpcServerHandler和RpcClientHandler
        * 发消息地方需要处理，需要传RemotingCommand类型，如RpcServerHandler和RpcClient
 * 粘包拆包

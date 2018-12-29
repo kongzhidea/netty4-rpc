@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * RPC Response
  */
-public class RpcResponse implements Serializable {
+public class RpcResponse extends RpcBaseModel {
 
     private static final long serialVersionUID = -6427527958525490529L;
 

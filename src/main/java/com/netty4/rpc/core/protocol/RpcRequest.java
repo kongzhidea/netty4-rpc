@@ -6,7 +6,7 @@ import java.io.Serializable;
  * RPC Request
  *
  */
-public class RpcRequest implements Serializable{
+public class RpcRequest extends RpcBaseModel{
     private static final long serialVersionUID = 2057915412423937046L;
 
     private String requestId;

@@ -52,7 +52,7 @@ public class ServiceTest {
         UserService userService = ServiceFactory.getService(UserService.class);
 
         UserParam param = new UserParam();
-        param.setLimit(1000);
+        param.setLimit(10);
         List<User> list = userService.getUserList(param);
         logger.info("" + list.size());
     }

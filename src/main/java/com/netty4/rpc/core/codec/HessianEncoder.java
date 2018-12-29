@@ -1,6 +1,7 @@
 package com.netty4.rpc.core.codec;
 
 import com.caucho.hessian.io.Hessian2Output;
+import com.netty4.rpc.core.protocol.RpcBaseModel;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufOutputStream;
 import io.netty.channel.ChannelHandler.Sharable;
@@ -15,11 +16,11 @@ import java.io.Serializable;
  * @create 10/9/1710:01
  */
 @Sharable
-public class HessianEncoder extends MessageToByteEncoder<Serializable> {
+public class HessianEncoder extends MessageToByteEncoder<RpcBaseModel> {
     private static final byte[] LENGTH_PLACEHOLDER = new byte[4];
 
     @Override
-    protected void encode(ChannelHandlerContext ctx, Serializable msg, ByteBuf out) throws Exception {
+    protected void encode(ChannelHandlerContext ctx, RpcBaseModel msg, ByteBuf out) throws Exception {
         int startIdx = out.writerIndex();
 
         ByteBufOutputStream bout = new ByteBufOutputStream(out);

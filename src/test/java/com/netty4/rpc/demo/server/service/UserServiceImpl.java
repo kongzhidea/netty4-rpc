@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
         user.setName("n_" + id);
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(10);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
         }
